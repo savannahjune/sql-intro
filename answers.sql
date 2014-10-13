@@ -29,7 +29,7 @@ SELECT DISTINCT region FROM salespeople
 SELECT email FROM salespeople WHERE region = 'Northwest' or region = 'Southwest'
 
 -- Problem 11
-SELECT email FROM salespeople WHERE region IN ('Northwest', 'Southwest') 
+SELECT email FROM salespeople WHERE region IN ('Northwest', 'Southwest')
 
 -- Problem 12
 SELECT email, givenname, surname FROM salespeople WHERE region IN ('Northwest', 'Southwest') AND surname LIKE 'M%'
@@ -72,4 +72,7 @@ SELECT common_name, melon_type, quantity, unit_price, total_price FROM melons JO
 
 -- Problem 25
 SELECT sum(order_total) FROM orders WHERE salesperson_id is NULL
+
+-- Problem 26
+SELECT givenname, surname, sum(orders.order_total) as sum_total, (sum(orders.order_total) * 0.15) as commission FROM salespeople LEFT JOIN orders ON salespeople.id = orders.salesperson_id GROUP BY orders.salesperson_id
 
